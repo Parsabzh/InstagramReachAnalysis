@@ -13,5 +13,20 @@ print(data.head())
 
 # check and drop null
 print(data.isnull().sum())
-data=data.dropna()
-
+data = data.dropna()
+# Find dist of From Home impression
+plt.figure(figsize=(10,8))
+plt.style.use('fivethirtyeight')
+plt.title("Distribution of Impressions From Home")
+sns.distplot(data["From Home"])
+plt.show()
+# Find dist of From Hashtag impression
+plt.figure(figsize=(10, 8))
+plt.title("Distribution of Impressions From Hashtags")
+sns.distplot(data['From Hashtags'])
+plt.show()
+# Find dist of From Explore
+plt.figure(figsize=(10, 8))
+plt.title("Distribution of Impressions From Explore")
+sns.distplot(data['From Explore'])
+plt.show()
