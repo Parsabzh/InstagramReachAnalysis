@@ -85,3 +85,19 @@ print(correlation["Impressions"].sort_values(ascending=False))
 #Claculate Conversion
 conversion_rate = (data["Follows"].sum() / data["Profile Visits"].sum()) * 100
 print(conversion_rate)
+
+# training
+x = np.array(data[['Likes', 'Saves', 'Comments', 'Shares',
+                   'Profile Visits', 'Follows']])
+y = np.array(data["Impressions"])
+xtrain, xtest, ytrain, ytest = train_test_split(x, y,
+                                                test_size=0.2,
+                                                random_state=42)
+
+model = PassiveAggressiveRegressor()
+model.fit(xtrain, ytrain)
+model.score(xtest, ytest)
+
+# Features = [['Likes','Saves', 'Comments', 'Shares', 'Profile Visits', 'Follows']]
+features = np.array([[282.0, 233.0, 4.0, 9.0, 165.0, 54.0]])
+model.predict(features)
