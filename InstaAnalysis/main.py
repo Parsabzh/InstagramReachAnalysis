@@ -53,3 +53,35 @@ plt.figure( figsize=(12,10))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
 plt.show()
+
+#find corr between likes and impression
+figure = px.scatter(data_frame = data, x="Impressions",
+                    y="Likes", size="Likes", trendline="ols",
+                    title = "Relationship Between Likes and Impressions")
+figure.show()
+
+#Find corr between comments and impression
+figure = px.scatter(data_frame = data, x="Impressions",
+                    y="Comments", size="Comments", trendline="ols",
+                    title = "Relationship Between Comments and Total Impressions")
+figure.show()
+
+#Find corr between number of share and impression
+figure = px.scatter(data_frame = data, x="Impressions",
+                    y="Shares", size="Shares", trendline="ols",
+                    title = "Relationship Between Shares and Total Impressions")
+figure.show()
+
+#Find corr between number of saves and impression
+figure = px.scatter(data_frame = data, x="Impressions",
+                    y="Saves", size="Saves", trendline="ols",
+                    title = "Relationship Between Post Saves and Total Impressions")
+figure.show()
+
+#Corr between all clm and impression
+correlation = data.corr()
+print(correlation["Impressions"].sort_values(ascending=False))
+
+#Claculate Conversion
+conversion_rate = (data["Follows"].sum() / data["Profile Visits"].sum()) * 100
+print(conversion_rate)
